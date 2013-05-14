@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>jQuery1</id>
+    <version>1.9.1</version>
+    <title>jQuery1</title>
+    <authors>jQuery Foundation,  Inc.</authors>
+    <owners>jQuery Foundation,  Inc.</owners>
+    <licenseUrl>http://jquery.org/license</licenseUrl>
+    <projectUrl>http://jquery.com/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>JQuery has split into two versions. One that supports older browsers (1.x) and a new version that has dropped support (2+) does not support IE6/7/8. If you build websites and you use the JQuery NuGet
+      package you have to remember to NOT update your JQuery. In addition other packages that have not been tested with verson 2 can use this package as a depedency instead of JQuery to prevent project
+      update errors.
+      
+      Updating JQuery will update your package to version 2+ of JQuery. This package is JQuery1 and can be installed along with jQuery in the same project.
+      
+      At the top of your View you would then include a directive for example like this.
+      
+      
+          &lt;!--[if lt IE9]
+              &lt;script src="jquery-1.9.1.js"&gt;&lt;/script&gt;
+          &lt;![endif]--&gt;
+          &lt;!--[if gte IE 9]&lt;!--&gt;
+              &lt;script src="jquery-2.0.js"&gt;&lt;/script&gt;
+          &lt;!--&lt;![endif]--&gt;
+      
+      
+      According to JQuery there will be new versions of JQuery 1.x in the future.  This package will be updated to reflect that change and ease deployment.</description>
+    <summary>JQuery version 1.x that is designed to be installed next to JQuery latest which has dropped support for new Browsers.</summary>
+    <releaseNotes />
+    <copyright />
+    <language>en-US</language>
+    <tags>JQuery</tags>
+    <references />
+  </metadata>
+</package>
