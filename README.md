@@ -1,7 +1,7 @@
 Timer GIF
 =========
 
-This sample project shows how to create an animated GIF timer that counts down to a specific point in time.
+This sample project shows how to create an animated GIF timer that counts down to a specific point in time.  A demo of the project can be found at <http://timer.ewal.net>.
 
 It is licensed with the [MIT License](http://opensource.org/licenses/mit-license.php) if you'd like to take it and do something with it.
 
