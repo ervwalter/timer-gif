@@ -1,0 +1,209 @@
+﻿@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta name="viewport" content="width=device-width" />
+	<title>Timer Gif</title>
+	<link href="/content/bootstrap.css" rel="stylesheet" />
+	<link href="~/Content/bootstrap-responsive.css" rel="stylesheet" />
+	<style>
+		.hide {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+
+	<div class="container">
+		<header class="jumbotron subhead" id="overview">
+			<div class="row">
+				<div class="span12">
+					<h1>5.. 4.. 3.. 2.. 1..</h1>
+					<p class="lead">Animated GIF Timer Generator.</p>
+				</div>
+			</div>
+		</header>
+
+		<div id="intro">
+			<div class="row">
+				<div class="span12">
+					<p>Ever wanted to include a countdown timer as part of a post to an online forum?  Most forums don't let you use things like JavaScript in your posts (for good reason), and so your options are limited.  This tool, however, will generate a dynamic animated GIF that will countdown to your designated "zero hour".  And because it is just a simple image, it can be included in posts on most forums.</p>
+					<p>Note: This timer has a maximum of 99 days, so don't pick a date further in the future than that.</p>
+				</div>
+			</div>
+		</div>
+
+		<div id="forms">
+			<div class="row">
+				<div class="span12">
+					<h3>Relative times...</h3>
+				</div>
+			</div>
+			<div class="row">
+				<div class="span12">
+					<p>Use this form to create a timer that reaches zero in...</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="span12">
+					<form class="form-inline">
+						<input id="relDays" type="text" class="input-mini" placeholder="0" value="0">
+						days,&nbsp;&nbsp;<input id="relHours" type="text" class="input-mini" placeholder="0" value="0">
+						hours,&nbsp;&nbsp;and&nbsp;&nbsp;<input id="relMinutes" type="text" class="input-mini" placeholder="0" value="0">
+						minutes&nbsp;&nbsp;
+						<button class="btn" id="createRelative">Create</button>
+					</form>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="span12">
+					<h3>Absolute times...</h3>
+				</div>
+			</div>
+			<div class="row">
+				<div class="span12">
+					<p>Use this form to create a timer that reaches zero on...</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="span12">
+					<form class="form-inline">
+						<select id="absMonth" class="input-medium">
+							<option value="1">January</option>
+							<option value="2">February</option>
+							<option value="3">March</option>
+							<option value="4">April</option>
+							<option value="5">May</option>
+							<option value="6">June</option>
+							<option value="7">July</option>
+							<option value="8">August</option>
+							<option value="9">September</option>
+							<option value="10">October</option>
+							<option value="11">November</option>
+							<option value="12">December</option>
+						</select>
+						<input id="absDay" type="text" class="input-mini" placeholder="Day">, 
+  <input id="absYear" type="text" class="input-mini" placeholder="Year">,&nbsp;&nbsp;at&nbsp;&nbsp;
+  <input id="absHour" type="text" class="input-mini" placeholder="Hour">:<input id="absMinute" type="text" class="input-mini" placeholder="Minute">:<input id="absSecond" type="text" class="input-mini" placeholder="Second">
+						<select id="absAmPm" class="input-small">
+							<option value="0">AM</option>
+							<option value="12">PM</option>
+						</select>
+						<select id="absUTC" class="input-medium">
+							<option value="0">Local Time</option>
+							<option value="1">UTC Time</option>
+						</select>&nbsp;&nbsp;
+                        <button class="btn" id="createAbsolute">Create</button>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<div id="timer" class="hide">
+			<div class="row">
+				<div class="span12">
+					<h3>Here is your timer...</h3>
+				</div>
+			</div>
+			<div class="row">
+				<div class="span12">
+					<p>Your timer reaches zero <span id="absolute"></span>.</p>
+					<p>
+						<img id="image" src="" />
+					</p>
+					<p>Image URL:</p>
+					<p><strong><span id="url"></span></strong></p>
+					<p>BBCode:</p>
+					<p>[img]<strong><span id="bbcode"></span></strong>[/img]</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="/scripts/jquery-1.9.1.js"></script>
+	<script src="/scripts/moment.js"></script>
+
+	<script>
+		$(function () {
+
+			var tomorrow = moment().startOf('day').add('days', 1);
+			$('#absMonth').val(tomorrow.month() + 1);
+			$('#absDay').val(tomorrow.date());
+			$('#absYear').val(tomorrow.year());
+			$('#absHour').val('12');
+			$('#absMinute').val('00');
+			$('#absSecond').val('00');
+
+			$("input").on('mouseup', function () {
+				$(this).select();
+			});
+
+			function showTimer(moment) {
+				var timestamp = moment.unix();
+				var url = location.protocol + '//' + location.host + '/timer/' + timestamp;
+				$("#url").text(url);
+				$("#bbcode").text(url);
+				$("#image").attr('src', url);
+				$("#duration").text(moment.fromNow());
+				var formatted = moment.format('dddd, MMMM Do YYYY, h:mm:ss a');
+				if (moment._isUTC) {
+					formatted += " UTC";
+				}
+				$("#absolute").text(formatted);
+				$("#timer").show();
+			}
+
+			$('#createRelative').on('click', function () {
+				var days = parseInt($("#relDays").val()) || 0;
+				var hours = parseInt($("#relHours").val()) || 0;
+				var minutes = parseInt($("#relMinutes").val()) || 0;
+				var duration = moment.duration({
+					days: days,
+					hours: hours,
+					minutes: minutes
+				});
+				now = moment();
+				var zeroTime = now.add(duration);
+				showTimer(zeroTime);
+				return false;
+			});
+
+			$('#createAbsolute').on('click', function () {
+				var month = parseInt($("#absMonth").val()) || 1;
+				var day = parseInt($("#absDay").val()) || 1;
+				var year = parseInt($("#absYear").val()) || 2013;
+				var hour = parseInt($("#absHour").val()) || 0;
+				var minute = parseInt($("#absMinute").val()) || 0;
+				var second = parseInt($("#absSecond").val()) || 0;
+				var utc = parseInt($("#absUTC").val()) || 0;
+
+				pm = parseInt($("#absAmPm").val()) || 0
+				if (pm === 0 && hour === 12) {
+					hour = 0;
+				} else {
+					hour += pm;
+				}
+
+				var zeroTime;
+
+				if (utc === 1) {
+					zeroTime = moment.utc([year, month - 1, day, hour, minute, second]);
+				} else {
+					zeroTime = moment([year, month - 1, day, hour, minute, second]);
+				}
+
+				showTimer(zeroTime);
+				return false;
+			});
+
+
+		});
+	</script>
+
+</body>
+</html>
