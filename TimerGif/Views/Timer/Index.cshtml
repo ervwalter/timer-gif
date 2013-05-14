@@ -112,7 +112,7 @@
 			</div>
 			<div class="row">
 				<div class="span12">
-					<p>Your timer reaches zero <span id="absolute"></span>.</p>
+					<p>Your timer reaches zero on <span id="absolute"></span>.</p>
 					<p>
 						<img id="image" src="" />
 					</p>
@@ -150,7 +150,7 @@
 				$("#bbcode").text(url);
 				$("#image").attr('src', url);
 				$("#duration").text(moment.fromNow());
-				var formatted = moment.format('dddd, MMMM Do YYYY, h:mm:ss a');
+				var formatted = moment.format('dddd, MMMM Do YYYY, [at] h:mm:ss a');
 				if (moment._isUTC) {
 					formatted += " UTC";
 				}
