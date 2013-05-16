@@ -1,4 +1,5 @@
 ﻿using AttributeRouting.Web.Mvc;
+using ClickyAnalytics;
 using GetFeedback;
 using GifComponents;
 using System;
@@ -126,6 +127,10 @@ namespace TimerImage.Controllers
 			catch
 			{
 				return new FilePathResult(Server.MapPath(BackgroundPath), "image/gif");
+			}
+			finally
+			{
+				Clicky.TrackRequest(Request);
 			}
 		}
 	}
