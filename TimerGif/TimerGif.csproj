@@ -48,6 +48,22 @@
     <Reference Include="AttributeRouting.Web.Mvc">
       <HintPath>..\packages\AttributeRouting.3.5.6\lib\net40\AttributeRouting.Web.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="CommonForms, Version=0.1.4390.35387, Culture=neutral, PublicKeyToken=3af2759e475084d9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\external\CommonForms.dll</HintPath>
+    </Reference>
+    <Reference Include="GetFeedback, Version=0.1.4883.27003, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\external\GetFeedback.dll</HintPath>
+    </Reference>
+    <Reference Include="GifComponents, Version=0.2.4884.14865, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\external\GifComponents.dll</HintPath>
+    </Reference>
+    <Reference Include="ImageTools, Version=0.2.4884.14853, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\external\ImageTools.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -58,6 +74,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -121,11 +138,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\AttributeRoutingConfig.cs" />
+    <Compile Include="Code\AsyncStub.cs" />
     <Compile Include="Code\CompressFilter.cs" />
     <Compile Include="Code\CustomContentTypeAttribute.cs" />
-    <Compile Include="Code\GifEncoder.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="Code\Disposer.cs" />
     <Compile Include="Controllers\TimerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -139,6 +155,153 @@
     <None Include="Properties\PublishProfiles\timergif - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\timergif - Web Deploy %282%29.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="bin\ImageMagick\coder.xml" />
+    <Content Include="bin\ImageMagick\colors.xml" />
+    <Content Include="bin\ImageMagick\configure.xml" />
+    <Content Include="bin\ImageMagick\CORE_RL_bzlib_.dll" />
+    <Content Include="bin\ImageMagick\CORE_RL_jbig_.dll" />
+    <Content Include="bin\ImageMagick\CORE_RL_jp2_.dll" />
+    <Content Include="bin\ImageMagick\CORE_RL_jpeg_.dll" />
+    <Content Include="bin\ImageMagick\CORE_RL_lcms_.dll" />
+    <Content Include="bin\ImageMagick\CORE_RL_libxml_.dll" />
+    <Content Include="bin\ImageMagick\CORE_RL_Magick++_.dll" />
+    <Content Include="bin\ImageMagick\CORE_RL_magick_.dll" />
+    <Content Include="bin\ImageMagick\CORE_RL_png_.dll" />
+    <Content Include="bin\ImageMagick\CORE_RL_tiff_.dll" />
+    <Content Include="bin\ImageMagick\CORE_RL_ttf_.dll" />
+    <Content Include="bin\ImageMagick\CORE_RL_wand_.dll" />
+    <Content Include="bin\ImageMagick\CORE_RL_zlib_.dll" />
+    <Content Include="bin\ImageMagick\delegates.xml" />
+    <Content Include="bin\ImageMagick\english.xml" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_aai_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_art_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_avs_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_bgr_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_bmp_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_braille_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_cals_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_caption_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_cin_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_cip_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_clipboard_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_clip_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_cmyk_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_cut_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_dcm_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_dds_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_debug_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_dib_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_djvu_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_dng_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_dot_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_dps_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_dpx_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_emf_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_ept_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_exr_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_fax_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_fd_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_fits_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_fpx_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_gif_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_gradient_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_gray_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_hald_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_hdr_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_histogram_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_hrz_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_html_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_icon_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_info_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_inline_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_ipl_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_jbig_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_jnx_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_jp2_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_jpeg_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_label_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_mac_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_magick_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_map_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_mask_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_matte_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_mat_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_meta_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_miff_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_mono_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_mpc_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_mpeg_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_mpr_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_msl_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_mtv_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_mvg_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_null_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_otb_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_palm_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_pango_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_pattern_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_pcd_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_pcl_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_pcx_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_pdb_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_pdf_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_pes_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_pict_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_pix_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_plasma_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_png_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_pnm_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_preview_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_ps2_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_ps3_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_psd_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_ps_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_pwp_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_raw_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_rgb_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_rla_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_rle_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_scr_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_sct_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_sfw_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_sgi_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_stegano_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_sun_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_svg_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_tga_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_thumbnail_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_tiff_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_tile_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_tim_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_ttf_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_txt_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_uil_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_url_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_uyvy_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_vicar_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_vid_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_viff_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_wbmp_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_webp_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_wmf_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_wpg_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_xbm_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_xcf_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_xc_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_xpm_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_xps_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_xtrn_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_xwd_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_x_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_ycbcr_.dll" />
+    <Content Include="bin\ImageMagick\IM_MOD_RL_yuv_.dll" />
+    <Content Include="bin\ImageMagick\locale.xml" />
+    <Content Include="bin\ImageMagick\log.xml" />
+    <Content Include="bin\ImageMagick\magic.xml" />
+    <Content Include="bin\ImageMagick\policy.xml" />
+    <Content Include="bin\ImageMagick\thresholds.xml" />
+    <Content Include="bin\ImageMagick\type-ghostscript.xml" />
+    <Content Include="bin\ImageMagick\type.xml" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="favicon.ico" />
