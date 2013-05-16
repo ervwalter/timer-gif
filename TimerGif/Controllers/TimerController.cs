@@ -41,6 +41,7 @@ namespace TimerImage.Controllers
 		[GET("/timer/{timestamp?}")]
 		public ActionResult Timer(long? timestamp)
 		{
+			string title = null;
 			try
 			{
 				byte[] output = null;
@@ -48,6 +49,7 @@ namespace TimerImage.Controllers
 				{
 					int repeatCount = 0; //repeat forever
 					DateTime end = Epoch.AddSeconds(timestamp ?? 0);
+					title = end.ToString();
 					TimeSpan remaining = end - DateTime.UtcNow;
 					if (remaining.TotalSeconds < 0)
 					{
@@ -130,7 +132,7 @@ namespace TimerImage.Controllers
 			}
 			finally
 			{
-				Clicky.TrackRequest(Request);
+				Clicky.TrackRequest(Request, ActionType.Download, "Timer: " + title);
 			}
 		}
 	}
