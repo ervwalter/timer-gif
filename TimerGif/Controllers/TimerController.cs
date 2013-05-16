@@ -132,7 +132,7 @@ namespace TimerImage.Controllers
 			}
 			finally
 			{
-				Clicky.TrackRequest(Request, ActionType.Download, "Timer: " + title);
+				Clicky.TrackRequest(Request, ActionType.PageView, "Timer: " + title);
 			}
 		}
 	}

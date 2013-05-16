@@ -182,12 +182,11 @@
 				var second = parseInt($("#absSecond").val()) || 0;
 				var utc = parseInt($("#absUTC").val()) || 0;
 
-				pm = parseInt($("#absAmPm").val()) || 0
-				if (pm === 0 && hour === 12) {
+				if (hour === 12) {
 					hour = 0;
-				} else {
-					hour += pm;
 				}
+				pm = parseInt($("#absAmPm").val()) || 0
+				hour += pm;
 
 				var zeroTime;
 
