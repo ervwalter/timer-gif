@@ -138,7 +138,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\AttributeRoutingConfig.cs" />
-    <Compile Include="Code\AsyncStub.cs" />
     <Compile Include="Code\CompressFilter.cs" />
     <Compile Include="Code\CustomContentTypeAttribute.cs" />
     <Compile Include="Code\Disposer.cs" />
@@ -302,12 +301,13 @@
     <Content Include="bin\ImageMagick\thresholds.xml" />
     <Content Include="bin\ImageMagick\type-ghostscript.xml" />
     <Content Include="bin\ImageMagick\type.xml" />
+    <Content Include="Content\background.png" />
+    <Content Include="Content\bootstrap-responsive.css" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Global.asax" />
-    <Content Include="Content\background.gif" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\moment.min.js" />
